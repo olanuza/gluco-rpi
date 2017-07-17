@@ -1,0 +1,92 @@
+# Glucometer Utilities
+
+This utility I created for personal needs, as my glucometer's software
+can only print the software (to XPS) without a file export option.
+
+While right now only supports the glucometers I own and for which I
+have the specification of the protocol, I've tried designing it so
+that it can be extended and used for other models and other brands as
+well.
+
+If you have knowledge of a protocol of a glucometer you would have
+supported, please provide a reference, possibly by writing a
+specification and contribute it to
+https://github.com/Flameeyes/glucometer-protocols/.
+
+## Supported devices
+
+Please see the following table for the driver for each device that is
+known and supported; the following table will provide further
+information on each of the devices.
+
+| Manufacturer | Model Name              | Driver             | Dependencies  |
+| ---          | ---                     | ---                | ---           |
+| LifeScan     | OneTouch Ultra 2        | `otultra2`         | [pyserial]    |
+| LifeScan     | OneTouch Ultra Easy     | `otultraeasy`      | [pyserial]    |
+| LifeScan     | OneTouch Ultra Mini     | `otultraeasy`      | [pyserial]    |
+| LifeScan     | OneTouch Verio (USB)    | `otverio2015`      | [python-scsi] |
+| LifeScan     | OneTouch Select Plus    | `otverio2015`      | [python-scsi] |
+| Abbott       | FreeStyle InsuLinx†     | `fsinsulinx`       |               |
+| Abbott       | FreeStyle Libre         | `fslibre`          |               |
+| Abbott       | FreeStyle Optium        | `fsoptium`         | [pyserial]    |
+| Abbott       | FreeStyle Precision Neo | `fsprecisionneo`   |               |
+| Abbott       | FreeStyle Optium Neo†   | `fsprecisionneo`   |               |
+| Roche        | Accu-Chek Mobile        | `accuchek_reports` |               |
+| SD Biosensor | SD CodeFree             | `sdcodefree`       | [pyserial]    |
+
+† Untested.
+
+[pyserial]: https://pythonhosted.org/pyserial/
+[python-scsi]: https://github.com/rosjat/python-scsi
+
+## Dump format
+
+The `dump` action by default will output CSV-compatible format, with the
+following fields:
+
+ * date and time;
+ * meter reading value;
+ * before/after meal information, if known;
+ * comment provided with the reading, if any.
+
+Meal and comment information is provided by the meters supporting the
+information. In the future, meal information could be guessed based on the time
+of the reading.
+
+The unit format used by the dump by default matches what the meter reports as
+its display unit, which might differ from the one used by the meter for internal
+representation and wire protocol. You can override the display unit with
+`--unit`.
+
+## Development
+
+The tool is being written keeping in mind that different glucometers,
+even if they are all from the same manufacturer, will use different
+protocols.
+
+If you want to contribute code, please note that the target language
+is Python 3.2, and that the style to follow is for the most part PEP8
+compatible.
+
+## License
+
+Copyright © 2013-2017 Diego Elio Pettenò <flameeyes@flameeyes.eu>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

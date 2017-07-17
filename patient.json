@@ -1,0 +1,31 @@
+{
+  "resourceType": "observation",
+  "id": "",
+  "id_patient": "0000",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "2339-0",
+        "display": "Glucose [Mass/volume] in Blood"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/0000",
+    "display": "Oriol Lanuza Fisas"
+  },
+  "performer": [
+    {
+      "reference": "Practitioner/0000",
+      "display": "Gregory House"
+    }
+  ],
+  "valueQuantity": {
+    "system": "http://unitsofmeasure.org"
+  },
+  "effectivePeriod": {
+    "start": ""
+  }
+}
